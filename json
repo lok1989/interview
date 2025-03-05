@@ -1,0 +1,63 @@
+{
+  "filters": {
+    "logic": "AND",
+    "conditions": [
+      {
+        "type": "condition",
+        "field": "status",
+        "operator": "=",
+        "value": "ACTIVE"
+      },
+      {
+        "type": "condition",
+        "field": "created_at",
+        "operator": ">=",
+        "value": "2024-01-01"
+      },
+      {
+        "type": "group",
+        "logic": "OR",
+        "conditions": [
+          {
+            "type": "condition",
+            "field": "category",
+            "operator": "=",
+            "value": "electronics"
+          },
+          {
+            "type": "condition",
+            "field": "category",
+            "operator": "=",
+            "value": "furniture"
+          }
+        ]
+      }
+    ]
+  },
+  "sort": [
+    {
+      "field": "created_at",
+      "order": "DESC"
+    },
+    {
+      "field": "price",
+      "order": "ASC"
+    }
+  ],
+  "pagination": {
+    "limit": 10,
+    "offset": 20
+  },
+  "group_by": ["category"],
+  "having": {
+    "logic": "AND",
+    "conditions": [
+      {
+        "type": "condition",
+        "field": "COUNT(*)",
+        "operator": ">",
+        "value": 5
+      }
+    ]
+  }
+}
